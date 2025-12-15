@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шақыру: Жеңіс атаның 60 жылдығы & Сүндет Той</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            100: '#F9F1D8',
+                            300: '#EAD798',
+                            500: '#C5A059',
+                            700: '#8E6E32',
+                        },
+                        dark: {
+                            900: '#0a0a0a',
+                            800: '#121212',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    animation: {
+                        'spin-slow': 'spin 8s linear infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                        'fade-in-up': 'fadeInUp 1s ease-out forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #050505;
+            color: #f3f4f6;
+            overflow-x: hidden;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+        .text-gradient {
+            background: linear-gradient(to right, #F9F1D8, #C5A059, #F9F1D8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: shine 5s linear infinite;
+        }
+        @keyframes shine {
+            to {
+                background-position: 200% center;
+            }
+        }
+        /* Hide scrollbar for clean mobile look */
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333; 
+        }
+        
+        #envelope-overlay {
+            transition: opacity 0.8s ease-in-out, visibility 0.8s;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col items-center justify-center relative">
+
+    <!-- Audio Element -->
+    <audio id="bg-music" loop>
+        <!-- Мерекелік фондық музыка -->
+        <source src="https://cdn.pixabay.com/download/audio/2022/10/25/audio_2491566436.mp3?filename=uplifting-wedding-123473.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Initial Overlay / "Envelope" -->
+    <div id="envelope-overlay" class="fixed inset-0 z-50 bg-dark-900 flex flex-col items-center justify-center px-6 text-center">
+        <div class="mb-8 relative w-32 h-32 flex items-center justify-center">
+            <div class="absolute inset-0 border-2 border-gold-500 rounded-full animate-spin-slow opacity-30"></div>
+            <div class="absolute inset-2 border border-gold-300 rounded-full animate-spin-slow opacity-50" style="animation-direction: reverse;"></div>
+            <i class="fa-solid fa-envelope-open-text text-4xl text-gold-300 animate-float"></i>
+        </div>
+        <h1 class="font-serif text-3xl text-gold-100 mb-2">Сізге Шақыру</h1>
+        <!-- Жаңадан қосылған атау -->
+        <h2 class="font-serif text-xl text-gold-300 mb-1 leading-tight">
+            Жеңіс атаның алпыс жылдығы
+        </h2>
+        <p class="text-gray-400 font-sans text-sm mb-8 tracking-widest uppercase">
+            & Арман мен Арланның сүндет тойы
+        </p>
+        
+        <button onclick="openInvitation()" class="group relative px-8 py-3 bg-transparent overflow-hidden rounded-full border border-gold-500 text-gold-300 transition-all duration-300 hover:bg-gold-500 hover:text-dark-900 hover:shadow-[0_0_20px_rgba(197,160,89,0.5)]">
+            <span class="relative z-10 font-sans tracking-widest text-xs font-bold uppercase">Шақыруды Ашу</span>
+        </button>
+    </div>
+
+    <!-- Main Content -->
+    <main id="main-content" class="w-full max-w-md md:max-w-xl mx-auto opacity-0 transition-opacity duration-1000 p-4 pb-24">
+        
+        <!-- Music Toggle (Floating) -->
+        <button onclick="toggleMusic()" id="music-btn" class="fixed top-4 right-4 z-40 w-10 h-10 rounded-full glass-card flex items-center justify-center text-gold-300 shadow-lg">
+            <i class="fa-solid fa-volume-high animate-pulse"></i>
+        </button>
+
+        <!-- Header Section -->
+        <section class="text-center pt-10 pb-8 animate-fade-in-up" style="animation-delay: 0.2s;">
+            <div class="inline-block mb-4">
+                <i class="fa-solid fa-crown text-3xl text-gold-500 mb-2"></i>
+                <div class="h-px w-24 bg-gradient-to-r from-transparent via-gold-500 to-transparent mx-auto"></div>
+            </div>
+            
+            <p class="font-sans text-xs tracking-[0.3em] uppercase text-gray-400 mb-2">Қос қуаныш</p>
+            
+            <h1 class="font-serif text-5xl md:text-6xl text-gradient mb-2 leading-tight">
+                Жеңіс атаның алпыс жылдығы
+            </h1>
+            <p class="font-serif text-3xl text-gold-300 mb-6">
+                & Арман мен Арланның сүндет тойы
+            </p>
+            
+            <!-- Той Иелері (Двойной формат) -->
+            <div class="mt-6 flex flex-col items-center gap-2 text-gold-300 font-sans text-sm tracking-widest uppercase">
+                <span class="text-xs text-gray-400 font-sans tracking-normal mb-1">Той иелері:</span>
+                <span class="text-white text-xl font-serif">Жеңіс — Шолпан</span>
+                <span class="text-white text-xl font-serif">Қайрат — Айнұр</span>
+            </div>
+        </section>
+
+        <!-- Decorative Image/Divider -->
+        <div class="w-full h-48 rounded-2xl overflow-hidden relative mb-8 animate-fade-in-up shadow-2xl shadow-gold-700/10" style="animation-delay: 0.4s;">
+            <!-- Абстрактілі алтын/қара фондық сурет -->
+            <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=1000&auto=format&fit=crop" alt="Мереке" class="w-full h-full object-cover opacity-60">
+            <div class="absolute inset-0 bg-gradient-to-t from-dark-900 to-transparent"></div>
+        </div>
+
+        <!-- Invitation Text -->
+        <section class="glass-card rounded-2xl p-8 text-center mb-6 animate-fade-in-up relative overflow-hidden" style="animation-delay: 0.6s;">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-gold-500 to-transparent"></div>
+            
+            <!-- Жұлдызша -->
+            <div class="mb-6 text-gold-500 text-xl">✦</div>
+
+            <p class="font-serif text-lg text-gray-200 leading-relaxed mb-6">
+                Құрметті қонақтар!
+            </p>
+            <p class="font-sans text-sm text-gray-400 leading-loose mb-6">
+                Сіздерді осы қос қуанышты бірге бөлісуге шақырамыз! Біз Жеңіс атаның мерейтойын, сондай-ақ ұлдарымыз Арман мен Арланның сүндет тойын тойлаймыз.
+            </p>
+            
+            <!-- Арнайы сұралған сөйлем -->
+            <div class="py-4 border-t border-b border-gray-800 mb-6">
+                <p class="font-serif italic text-xl text-gold-300">
+                    "Зейнет жас пен Сүндет той!"
+                </p>
+            </div>
+
+            <p class="font-sans text-xs uppercase tracking-widest text-gray-500 mb-2">Ізгі ниетпен және құрметпен,</p>
+            <p class="font-serif text-2xl text-white">
+                Қайрат және Айнұр
+            </p>
+        </section>
+
+        <!-- Date & Time Card -->
+        <section class="grid grid-cols-3 gap-2 mb-6 animate-fade-in-up" style="animation-delay: 0.8s;">
+            <div class="glass-card rounded-xl p-4 text-center flex flex-col justify-center">
+                <span class="text-gold-500 font-serif text-2xl font-bold">05</span>
+                <span class="text-xs uppercase text-gray-400 tracking-wider">Қаңтар</span>
+            </div>
+            <div class="glass-card rounded-xl p-4 text-center flex flex-col justify-center bg-gold-900/20 border-gold-500/30">
+                <span class="text-gold-300 font-serif text-2xl font-bold">2026</span>
+                <span class="text-xs uppercase text-gray-400 tracking-wider">Дүйсенбі</span>
+            </div>
+            <div class="glass-card rounded-xl p-4 text-center flex flex-col justify-center">
+                <span class="text-gold-500 font-serif text-2xl font-bold">18:00</span>
+                <span class="text-xs uppercase text-gray-400 tracking-wider">Қонақтарды күту</span>
+            </div>
+        </section>
+
+        <!-- Location Section -->
+        <section class="glass-card rounded-2xl p-1 mb-6 animate-fade-in-up" style="animation-delay: 1s;">
+            <div class="bg-dark-800 rounded-xl p-6 text-center">
+                <div class="w-12 h-12 bg-dark-900 rounded-full flex items-center justify-center mx-auto mb-4 border border-gold-700/30 text-gold-500 shadow-[0_0_15px_rgba(197,160,89,0.3)]">
+                    <i class="fa-solid fa-location-dot text-xl"></i>
+                </div>
+                <h3 class="font-serif text-2xl text-white mb-1">Grand Aktau Hall</h3>
+                <p class="font-sans text-sm text-gray-400 mb-6">Ақтау қаласы</p>
+                
+                <a href="https://2gis.kz/aktau/firm/70000001083277310" target="_blank" class="inline-flex items-center justify-center w-full py-4 bg-gold-500 text-dark-900 font-bold rounded-lg hover:bg-gold-300 transition-colors duration-300">
+                    <i class="fa-solid fa-map-location-dot mr-2"></i>
+                    Картаны ашу (2GIS)
+                </a>
+            </div>
+        </section>
+
+        <!-- Timer -->
+        <section class="text-center py-8 animate-fade-in-up" style="animation-delay: 1.2s;">
+            <p class="text-xs uppercase tracking-[0.2em] text-gray-500 mb-6">Той басталуына қалды</p>
+            <div class="flex justify-center gap-4 md:gap-8 font-serif text-gold-100" id="countdown">
+                <!-- JS бұл жерді толтырады -->
+                <div class="text-center"><div class="text-3xl font-bold" id="days">00</div><div class="text-[0.6rem] font-sans uppercase text-gray-500 mt-1">Күн</div></div>
+                <div class="text-2xl font-light text-gold-700">:</div>
+                <div class="text-center"><div class="text-3xl font-bold" id="hours">00</div><div class="text-[0.6rem] font-sans uppercase text-gray-500 mt-1">Сағат</div></div>
+                <div class="text-2xl font-light text-gold-700">:</div>
+                <div class="text-center"><div class="text-3xl font-bold" id="minutes">00</div><div class="text-[0.6rem] font-sans uppercase text-gray-500 mt-1">Минут</div></div>
+                <div class="text-2xl font-light text-gold-700">:</div>
+                <div class="text-center"><div class="text-3xl font-bold" id="seconds">00</div><div class="text-[0.6rem] font-sans uppercase text-gray-500 mt-1">Секунд</div></div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center pt-8 pb-4 opacity-50">
+            <p class="font-serif text-gold-500 text-lg mb-2">Сіздерді күтеміз!</p>
+            <div class="h-8 w-px bg-gradient-to-b from-gold-500 to-transparent mx-auto"></div>
+        </footer>
+
+    </main>
+
+    <script>
+        // Музыка логикасы
+        const music = document.getElementById('bg-music');
+        const musicBtn = document.getElementById('music-btn');
+        const icon = musicBtn.querySelector('i');
+        let isPlaying = false;
+
+        function openInvitation() {
+            const overlay = document.getElementById('envelope-overlay');
+            const mainContent = document.getElementById('main-content');
+            
+            // Мәтінге ауысу
+            overlay.style.opacity = '0';
+            setTimeout(() => {
+                overlay.style.visibility = 'hidden';
+                overlay.style.display = 'none';
+            }, 800);
+
+            // Негізгі мазмұнды көрсету
+            mainContent.style.opacity = '1';
+
+            // Музыканы бастау
+            music.volume = 0.5;
+            music.play().then(() => {
+                isPlaying = true;
+            }).catch(e => {
+                console.log("Автоматты ойнату бұғатталды, пайдаланушы әрекеті қажет.");
+                icon.classList.remove('fa-volume-high');
+                icon.classList.add('fa-volume-xmark');
+                icon.classList.remove('animate-pulse');
+            });
+        }
+
+        function toggleMusic() {
+            if (isPlaying) {
+                music.pause();
+                icon.classList.remove('fa-volume-high');
+                icon.classList.remove('animate-pulse');
+                icon.classList.add('fa-volume-xmark');
+            } else {
+                music.play();
+                icon.classList.add('fa-volume-high');
+                icon.classList.add('animate-pulse');
+                icon.classList.remove('fa-volume-xmark');
+            }
+            isPlaying = !isPlaying;
+        }
+
+        // Кері санақ логикасы
+        const eventDate = new Date('January 05, 2026 18:00:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            if (distance < 0) {
+                document.getElementById("countdown").innerHTML = '<div class="text-xl">Той басталды!</div>';
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days < 10 ? '0' + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? '0' + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? '0' + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? '0' + seconds : seconds;
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+</html>
